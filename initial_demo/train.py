@@ -2,7 +2,6 @@ import argparse
 import joblib
 import os
 
-import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 
@@ -20,13 +19,14 @@ if __name__ == "__main__":
     # Data, model, and output directories
     parser.add_argument("--model-dir", type=str, default=os.environ.get("SM_MODEL_DIR"))
     parser.add_argument("--train", type=str, default=os.environ.get("SM_CHANNEL_TRAIN"))
+    parser.add_argument("--train-file", type=str, default="train.csv")
     parser.add_argument("--target", type=str)  # in this script we ask user to explicitly name the target
 
     args, _ = parser.parse_known_args()
 
     print("reading data")
-    print(args.train)
-    train_df = pd.read_csv(args.train)
+    # .train location is the on the machine the file is loaded, and .train_file is the file name
+    train_df = pd.read_csv(os.path.join(args.train, args.train_file)) 
 
     # train
     print("training model")
