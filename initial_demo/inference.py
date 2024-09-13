@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
     # Load model & compute predictions
     # Train houses model in this case - trained model
-    with tarfile.open(os.path.join(args.train, args.model_file_name)) as tar:
+    with tarfile.open(os.path.join(args.train, args.model_tar_file_name)) as tar:
         model = joblib.load(tar.extractfile(args.model_file_name))
     
     predictions = model.predict(X_test)
