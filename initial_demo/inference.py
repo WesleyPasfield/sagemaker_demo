@@ -18,6 +18,7 @@ if __name__ == "__main__":
     parser.add_argument("--train", type=str, default=os.environ.get("SM_CHANNEL_TRAIN")) # Using to store model
     parser.add_argument("--test", type=str, default=os.environ.get("SM_CHANNEL_TEST"))
     parser.add_argument("--test-file", type=str, default="test.csv")
+    parser.add_argument("--model-tar-file-name", type=str, default="model.tar.gz")
     parser.add_argument("--model-file-name", type=str, default="model.joblib")
     parser.add_argument("--target", type=str)  # in this script we ask user to explicitly name the target, can spec in hyperparameters
 
@@ -32,8 +33,10 @@ if __name__ == "__main__":
     X_test = test_df.drop(args.target, axis=1)
 
     # Load model & compute predictions
-    # Train houses model in this case - trained model.
-    model = joblib.load(tarfile.open(os.path.join(args.train, args.model_file_name)))
+    # Train houses model in this case - trained model
+    with tarfile.open(os.path.join(args.train, args.model_file_name)) as tar:
+        model = joblib.load(tar.extractfile(args.model_file_name))
+    
     predictions = model.predict(X_test)
 
     # Save predictions
