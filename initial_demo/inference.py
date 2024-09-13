@@ -2,7 +2,7 @@ import argparse
 import joblib
 import os
 import boto3
-
+import tarfile
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 
@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     # Load model & compute predictions
     # Train houses model in this case - trained model.
-    model = joblib.load(os.path.join(args.train, args.model_file_name))
+    model = joblib.load(tarfile.open(os.path.join(args.train, args.model_file_name)))
     predictions = model.predict(X_test)
 
     # Save predictions
