@@ -36,3 +36,8 @@ s3_location_test = 'housingdemo/test/test.csv'
 
 s3_response_train = upload_df(pd.DataFrame(X_train), s3_bucket, s3_location_train)
 s3_response_test = upload_df(pd.DataFrame(X_test), s3_bucket, s3_location_test)
+
+# Read from boto3 s3 and convert to dataframe
+
+s3_preds = s3_client.get_object(Bucket=s3_bucket, Key=s3_location_preds)
+predictions = pd.read_csv(s3_preds['Body'])

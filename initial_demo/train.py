@@ -30,7 +30,7 @@ if __name__ == "__main__":
     print("reading data")
     # .train location is the on the machine the file is loaded, and .train_file is the file name. Same for test data
     train_df = pd.read_csv(os.path.join(args.train, args.train_file)) 
-    test_df = pd.read_csv(os.path.join(args.test, "test.csv"))
+    test_df = pd.read_csv(os.path.join(args.test, args.test_file))
 
     # Get target variable & set up train/test data
     y_train = train_df[args.target]
