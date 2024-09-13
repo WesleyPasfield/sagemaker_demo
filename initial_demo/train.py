@@ -25,7 +25,7 @@ if __name__ == "__main__":
     args, _ = parser.parse_known_args()
 
     print("reading data")
-    train_df = pd.read_csv(args.train, args.train_file)
+    train_df = pd.read_csv(args.train)
 
     # train
     print("training model")
@@ -33,7 +33,8 @@ if __name__ == "__main__":
         n_estimators=args.n_estimators, 
         min_samples_leaf=args.min_samples_leaf, 
         max_depth=args.max_depth,
-        n_jobs=-1
+        n_jobs=-1,
+        verbose=1
     )
 
     model.fit(X_train, y_train)
