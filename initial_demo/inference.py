@@ -3,6 +3,7 @@ import joblib
 import os
 import boto3
 import tarfile
+import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 
@@ -42,7 +43,7 @@ if __name__ == "__main__":
     # Save predictions
 
     path = os.path.join(args.output_data_dir, "predictions.csv")
-    predictions.to_csv(path)
+    np.savetxt(path, predictions, delimiter=",")
     print("predictions persisted at " + path)
 
 
