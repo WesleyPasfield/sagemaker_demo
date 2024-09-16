@@ -43,7 +43,7 @@ if __name__ == "__main__":
     # Save predictions
 
     path = os.path.join(args.output_data_dir, "predictions.csv")
-    np.savetxt(path, predictions, delimiter=",")
+    np.savetxt(path, predictions, delimiter=",", header="predictions")
     print("predictions persisted at " + path)
 
 
