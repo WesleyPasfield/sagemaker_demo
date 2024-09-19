@@ -14,8 +14,8 @@ This operates in a world where ETL is largely happening upstream, and final mode
 
 The files included are as follows:
 
-`notebook_demo_example.ipynb` The Jupyter Notebook that orchestrates the model training & prediction computation, as well as reading the predictions from S3 into the notebook environment
-`train.py` The model training code that runs when the model training job executes
-`inference.py` The inference code that runs when the predictions are computed
-`get_data.py` A helper script that creates the datasets that we'll use in this demo. This is not integrated into the SageMaker process, just a means to make the training & test files used.
+- `notebook_demo_example.ipynb` The Jupyter Notebook that orchestrates the model training & prediction computation, as well as reading the predictions from S3 into the notebook environment
+- `train.py` The model training code that runs when the model training job executes
+- `inference.py` The inference code that runs when the predictions are computed
+- `get_data.py` A helper script that creates the datasets that we'll use in this demo. This is not integrated into the SageMaker process, just a means to make the training & test files used.
 
